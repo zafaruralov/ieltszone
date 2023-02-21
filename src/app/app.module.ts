@@ -17,7 +17,7 @@ import { HistoryModule } from "src/pages/History/history.module";
     MatchModule,
     HistoryModule,
     TelegrafModule.forRoot({
-      token: "5371565200:AAGy3-A_nG_aWt54yhQogjqoodtrkCi76IE",
+      token: "6092114671:AAFzIg-dYGE-5Nzr6QYY_zo4AU480Ncvyuk",
     }),
     BullModule.forRoot({
       redis: {
