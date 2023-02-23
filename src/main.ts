@@ -1,6 +1,7 @@
 import { ValidationPipe } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app/app.module";
+import { getBotToken } from "nestjs-telegraf";
 const cors = require("cors");
 
 async function bootstrap() {
@@ -14,6 +15,10 @@ async function bootstrap() {
     res.header("Access-Control-Allow-Origin", "https://ieltszone.netlify.app/");
     next();
   });
+  if ("/webhook") {
+    const bot = app.get(getBotToken());
+    app.use(bot.webhookCallback("/webhook"));
+  }
   const corsOptions = {
     origin: "*",
     credentials: true,

@@ -18,6 +18,13 @@ import { HistoryModule } from "src/pages/History/history.module";
     HistoryModule,
     TelegrafModule.forRoot({
       token: "6092114671:AAFzIg-dYGE-5Nzr6QYY_zo4AU480Ncvyuk",
+      launchOptions: {
+        dropPendingUpdates: true,
+        webhook: {
+          domain: "https://ieltszone-production.up.railway.app",
+          hookPath: "/webhook",
+        },
+      },
     }),
     BullModule.forRoot({
       redis: {
