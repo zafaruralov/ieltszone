@@ -1,6 +1,8 @@
+import { Telegraf } from "telegraf";
 import { ValidationPipe } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app/app.module";
+import axios from "axios";
 import { getBotToken } from "nestjs-telegraf";
 const cors = require("cors");
 
@@ -11,14 +13,28 @@ async function bootstrap() {
     origin: ["http://localhost:8080"],
   });
 
+
+  // const setupWebhook = async () => {
+  //   try {
+  //     const { data } = await axios.get(
+  //       `${TELEGRAM_API}/setWebhook?url=${webhookURL}&drop_pending_updates=true`
+  //     );
+  //     console.log(data);
+  //   } catch (error) {
+  //     return error;
+  //   }
+  // };
+
   app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "https://ieltszone.netlify.app/");
     next();
   });
-  if ("/webhook") {
-    const bot = app.get(getBotToken());
-    app.use(bot.webhookCallback("/webhook"));
-  }
+
+  // if (process.env.SERVER_URL) {
+  //   const bot = app.get(getBotToken());
+  //   app.use(bot.webhookCallback(process.env.SERVER_URL));
+  // }
+
   const corsOptions = {
     origin: "*",
     credentials: true,

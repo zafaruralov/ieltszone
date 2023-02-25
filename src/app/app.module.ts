@@ -8,6 +8,12 @@ import TelegramModule from "src/telegram/telegram.module";
 import { FalshCardModule } from "src/pages/Flashcard/flashcard.module";
 import { MatchModule } from "src/pages/Match/match.module";
 import { HistoryModule } from "src/pages/History/history.module";
+import { PrintConsumer } from "src/order/consumer/print-consumer";
+import { TgFileDonwloader } from "src/order/consumer/tg-file-donwloader-consumer";
+require("dotenv").config();
+
+// const TELEGRAM_API = `https://api.telegram.org/bot${process.env.TELEGRAM_TOKEN}`;
+// const webhookURL = `${process.env.SERVER_URL}`;
 
 @Module({
   imports: [
@@ -17,14 +23,18 @@ import { HistoryModule } from "src/pages/History/history.module";
     MatchModule,
     HistoryModule,
     TelegrafModule.forRoot({
-      token: "6092114671:AAFzIg-dYGE-5Nzr6QYY_zo4AU480Ncvyuk",
-      launchOptions: {
-        dropPendingUpdates: true,
-        webhook: {
-          domain: "https://ieltszone-production.up.railway.app",
-          hookPath: "/webhook",
-        },
-      },
+      token: `${process.env.TELEGRAM_TOKEN}`,
+      // launchOptions: {
+      //   webhook: {
+      //     domain: `${TELEGRAM_API}/setWebhook?url=${webhookURL}`,
+      //   },
+      // },
+      // botName: "Print Services",
+      // useFactory: () => ({
+      //   token: process.env.TELEGRAM_TOKEN,
+      //   middlewares: [],
+      //   include: [TelegramModule],
+      // }),
     }),
     BullModule.forRoot({
       redis: {

@@ -17,6 +17,7 @@ const telegram_module_1 = require("../telegram/telegram.module");
 const flashcard_module_1 = require("../pages/Flashcard/flashcard.module");
 const match_module_1 = require("../pages/Match/match.module");
 const history_module_1 = require("../pages/History/history.module");
+require("dotenv").config();
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -28,7 +29,7 @@ AppModule = __decorate([
             match_module_1.MatchModule,
             history_module_1.HistoryModule,
             nestjs_telegraf_1.TelegrafModule.forRoot({
-                token: "6092114671:AAFzIg-dYGE-5Nzr6QYY_zo4AU480Ncvyuk",
+                token: `${process.env.TELEGRAM_TOKEN}`,
             }),
             bull_1.BullModule.forRoot({
                 redis: {
